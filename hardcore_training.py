@@ -1,4 +1,4 @@
-from src.training.bots import RiskTrainer, GrowthTrainer, SentimentTrainer, AnalyzerBot, EthicsBot
+from src.training.bots import RiskTrainer, GrowthTrainer, SentimentTrainer, AnalyzerBot, EthicsBot, ModelComparisonBot
 from src.data.ingestor import MultiAssetIngestor
 from src.security.guardrails import Guardrail
 import pandas as pd
@@ -21,6 +21,7 @@ def hardcore_training():
     sentiment_coach = SentimentTrainer()
     analyzer = AnalyzerBot()
     ethics = EthicsBot()
+    comparator = ModelComparisonBot()
     
     assets = [
         {"symbol": "AAPL", "cat": "STOCKS"},
@@ -45,7 +46,10 @@ def hardcore_training():
         prices = df['Close']
         if isinstance(prices, pd.DataFrame): prices = prices.iloc[:, 0]
 
-        # 2. INTENSIVE RISK STRESS-TESTING
+        # 2. MODEL COMPARISON (CRITICAL)
+        comparator.run_training_session(prices)
+
+        # 3. INTENSIVE RISK STRESS-TESTING
         print(f"  -> Running RiskManager stress tests...")
         for sl in [0.01, 0.03, 0.05, 0.08, 0.12]:
             perf = risk_coach.run_training_session(prices, stop_loss_pct=sl)

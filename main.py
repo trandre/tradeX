@@ -1,68 +1,85 @@
 from src.data.ingestor import MultiAssetIngestor
 from src.simulation.broker import SimulatedBroker
-from src.intelligence.engine import IntelligenceEngine
+from src.intelligence.engine import ClaudeOllamaEngine
 from src.intelligence.social import EthicalFilter, ShadowTrader
-from src.training.bots import AnalyzerBot, SentimentTrainer
+from src.training.bots import AnalyzerBot, SentimentTrainer, ModelComparisonBot
+from src.reporting.excel_generator import DailyExcelReport
+from send_daily_report import send_email_report
+from src.intelligence.quant_methods import MedallionEngine
 import pandas as pd
+import datetime
+import random
 
 def main():
-    print("--- TradeX Intelligence, Ethics & Live Feed Hub ---")
+    print("--- TradeX Advanced Multi-Model Hub ---")
     
-    # --- 1. SETUP ---
+    # 1. SETUP
     ingestor = MultiAssetIngestor()
     broker = SimulatedBroker(initial_purse_nok=20000)
-    engine = IntelligenceEngine()
-    social = ShadowTrader()
-    analyzer = AnalyzerBot()
+    claude = ClaudeOllamaEngine()
+    medallion = MedallionEngine()
     sentiment_bot = SentimentTrainer()
-    ethics = EthicalFilter(min_score_threshold=40, blocked_segments=["Arms", "Tobacco"])
+    ethics = EthicalFilter(min_score_threshold=40)
     
-    # --- 2. LIVE SENTIMENT CHECK ---
-    print("\n[Intelligence] Checking live market sentiment...")
+    # 2. LIVE DATA
     headlines = ingestor.fetch_live_news()
     mood = sentiment_bot.run_training_session(headlines)
-    print(f"Current Market Mood Index: {mood:.2f}")
-
-    # --- 3. SELECT ACTOR & ADJUST PARAMETERS ---
-    actor_id = "NBIM" # Let's follow the Norwegian Pension Fund's style
-    print(f"\n[Social] Following mentor style: {actor_id}")
-    params = social.get_mimicry_parameters(actor_id)
-
-    # --- 4. MARKET SCAN WITH ETHICAL SCORING ---
-    print("\n[Market] Scanning for assets with Ethical Scoring...")
     promising = ingestor.list_promising_assets(period="1mo")
     
+    current_prices = {}
     for _, row in promising.iterrows():
         symbol = row['symbol']
-        
-        # In production, metadata comes from a database. Here we mock it for the demo.
-        # We assign 'Norway' to EQNR.OL and 'USA' to others for the ethical check.
-        country = "Norway" if ".OL" in symbol else "USA"
-        asset_info = {"ticker": symbol, "country": country, "segment": row['category']}
-        
-        allowed, reason = ethics.is_allowed(asset_info)
-        
-        if not allowed:
-            print(f"Skipping {symbol}: {reason}")
-            continue
-            
-        print(f"\nEthically Cleared Asset: {symbol} (Reason: {reason})")
-        
         data = ingestor.fetch_data(symbol, period="1mo")
-        current_price = data['Close']
-        if isinstance(current_price, pd.DataFrame):
-            current_price = current_price.iloc[:, 0]
-        current_price = float(current_price.iloc[-1])
+        if data.empty: continue
         
-        # Execute trade
-        success, message = broker.execute_trade(symbol, 1, current_price, side='buy')
-        print(f"Trade Execution: {message}")
-        break 
+        close = data['Close']
+        if isinstance(close, pd.DataFrame): close = close.iloc[:, 0]
+        price = float(close.iloc[-1])
+        current_prices[symbol] = price
+        
+        # --- MULTI-MODEL DECISION MATRIX ---
+        # Vi simulerer stemmene fra de ulike modellene
+        claude_dec = claude.analyze_market_state(close, mood/100.0)
+        
+        regime, _ = medallion.fit_regime_detection(close.values)
+        medallion_dec = "BUY" if regime == "Stable_Growth" else "HOLD"
+        
+        # Alpha og Gamma (Simulert basert på deres 'personlighet')
+        alpha_dec = "BUY" if random.random() > 0.4 else "HOLD" # Aggressiv DL
+        gamma_dec = "HOLD" if random.random() > 0.3 else "SELL" # Konservativ Stats
+        
+        decision_matrix = {
+            "Claude": claude_dec['action'],
+            "Medallion": medallion_dec,
+            "Alpha": alpha_dec,
+            "Gamma": gamma_dec
+        }
+        
+        # Strategi for kjøp: Flertall eller spesifikk trigger
+        buy_votes = len([v for v in decision_matrix.values() if v == "BUY"])
+        
+        if buy_votes >= 2 and symbol not in broker.positions:
+            trigger = "Konsensus Flertall"
+            if decision_matrix['Medallion'] == "BUY": trigger = "Medallion Regime-Trigger"
+            elif decision_matrix['Claude'] == "BUY": trigger = "Claude Sentiment-Trigger"
+            
+            broker.execute_trade(
+                symbol, 1, price, 
+                category=row['category'], 
+                side='buy',
+                trigger_strategy=trigger,
+                decision_matrix=decision_matrix
+            )
+            print(f"[DECISION] Kjøper {symbol}. Stemmer: {decision_matrix}")
 
-    # --- 5. POST-TRADE ANALYSIS ---
-    print("\n[Analysis] Reviewing activity...")
-    report = analyzer.run_training_session(broker.history)
-    print(f"Learning report updated. Status: {report['summary']['status']}")
+    # 3. RAPPORT-GENERERING
+    print("\n[Reporting] Genererer fullstendig analyserapport...")
+    report_gen = DailyExcelReport(broker)
+    filename = report_gen.generate(current_prices)
+    
+    # Send rapport
+    send_email_report("tfemteh@gmail.com", filename)
+    print(f"Fullført. Rapport sendt: {filename}")
 
 if __name__ == "__main__":
     main()

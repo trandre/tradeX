@@ -1,5 +1,5 @@
 {
-    "portfolio_avg_esg": 56.25,
+    "portfolio_avg_esg": 58.333333333333336,
     "compliance_status": "MARGINAL",
     "details": [
         {
@@ -16,12 +16,7 @@
             "asset": "USDNOK=X",
             "esg_score": 50,
             "status": "PASS"
-        },
-        {
-            "asset": "^TNX",
-            "esg_score": 50,
-            "status": "PASS"
         }
     ],
-    "timestamp": "2026-02-20T10:20:16.706457"
+    "timestamp": "2026-02-20T13:08:31.828978"
 }

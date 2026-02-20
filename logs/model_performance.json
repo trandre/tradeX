@@ -1,5 +1,18 @@
 {
-    "Engine_Alpha (DeepLearning)": 10.671054914538015,
-    "Engine_Beta (Reinforcement)": 5.412474027420318,
-    "Engine_Gamma (Statistical)": 9.819957432917452
+    "Engine_Alpha (DeepLearning)": {
+        "perf": 12.595472532436363,
+        "critique": "Latency reduced via dropout regularization."
+    },
+    "Engine_Claude (Hybrid-LLM)": {
+        "perf": 29.76221418680885,
+        "critique": "Reasoning: Heuristic fallback (Ollama offline). Analysis based on sentiment magnitude.. Action: BUY"
+    },
+    "Engine_Medallion (Quant/Simons)": {
+        "perf": 30.728858661392618,
+        "critique": "HMM Regime: Stable_Growth. Exploited statistical anomalies."
+    },
+    "Engine_Gamma (Statistical)": {
+        "perf": 12.024490326568305,
+        "critique": "Confidence thresholds adjusted."
+    }
 }
