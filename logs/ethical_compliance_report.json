@@ -1,6 +1,6 @@
 {
-    "portfolio_avg_esg": 78.5,
-    "compliance_status": "HIGHLY ETHICAL",
+    "portfolio_avg_esg": 56.25,
+    "compliance_status": "MARGINAL",
     "details": [
         {
             "asset": "AAPL",
@@ -8,10 +8,20 @@
             "status": "PASS"
         },
         {
-            "asset": "EQNR.OL",
-            "esg_score": 82,
+            "asset": "BTC-USD",
+            "esg_score": 50,
+            "status": "PASS"
+        },
+        {
+            "asset": "USDNOK=X",
+            "esg_score": 50,
+            "status": "PASS"
+        },
+        {
+            "asset": "^TNX",
+            "esg_score": 50,
             "status": "PASS"
         }
     ],
-    "timestamp": "2026-02-20T08:28:33.237458"
+    "timestamp": "2026-02-20T10:20:16.706457"
 }

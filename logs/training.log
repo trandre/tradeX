@@ -49,3 +49,193 @@ Parameters Tested: News Analysis
 Resulting Performance: 0.00%
 Coach's Notes: Average Sentiment Score: 0.00. Market Outlook: Neutral.
 
+2026-02-20 10:20:12,874 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 3.0%
+Resulting Performance: -3.98%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:12,874 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 5.0%
+Resulting Performance: -4.66%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:12,875 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 7.000000000000001%
+Resulting Performance: -7.65%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:12,875 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 10.0%
+Resulting Performance: 10.78%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:12,876 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 13.999999999999998%
+Resulting Performance: 23.53%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:12,886 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 7
+Resulting Performance: 112.33%
+Coach's Notes: RSI is 29.84
+
+2026-02-20 10:20:12,894 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 14
+Resulting Performance: 112.33%
+Coach's Notes: RSI is 52.11
+
+2026-02-20 10:20:12,901 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 21
+Resulting Performance: 112.33%
+Coach's Notes: RSI is 59.29
+
+2026-02-20 10:20:12,907 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 28
+Resulting Performance: 112.33%
+Coach's Notes: RSI is 50.97
+
+2026-02-20 10:20:13,211 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 3.0%
+Resulting Performance: -3.37%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,211 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 5.0%
+Resulting Performance: -3.37%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,212 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 7.000000000000001%
+Resulting Performance: -12.97%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,212 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 10.0%
+Resulting Performance: -12.97%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,212 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 13.999999999999998%
+Resulting Performance: -12.97%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,215 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 7
+Resulting Performance: 21.58%
+Coach's Notes: RSI is 44.69
+
+2026-02-20 10:20:13,217 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 14
+Resulting Performance: 21.58%
+Coach's Notes: RSI is 42.21
+
+2026-02-20 10:20:13,219 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 21
+Resulting Performance: 21.58%
+Coach's Notes: RSI is 33.34
+
+2026-02-20 10:20:13,221 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 28
+Resulting Performance: 21.58%
+Coach's Notes: RSI is 31.76
+
+2026-02-20 10:20:13,628 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 3.0%
+Resulting Performance: -0.73%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,628 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 5.0%
+Resulting Performance: -3.30%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,628 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 7.000000000000001%
+Resulting Performance: -1.17%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,628 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 10.0%
+Resulting Performance: -5.32%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,629 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 13.999999999999998%
+Resulting Performance: 16.25%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,631 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 7
+Resulting Performance: 13.38%
+Coach's Notes: RSI is 62.70
+
+2026-02-20 10:20:13,634 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 14
+Resulting Performance: 13.38%
+Coach's Notes: RSI is 46.57
+
+2026-02-20 10:20:13,636 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 21
+Resulting Performance: 13.38%
+Coach's Notes: RSI is 36.61
+
+2026-02-20 10:20:13,638 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 28
+Resulting Performance: 13.38%
+Coach's Notes: RSI is 35.59
+
+2026-02-20 10:20:13,941 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 3.0%
+Resulting Performance: 8.55%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,941 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 5.0%
+Resulting Performance: 5.20%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,941 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 7.000000000000001%
+Resulting Performance: 20.67%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,941 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 10.0%
+Resulting Performance: 13.75%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,941 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 13.999999999999998%
+Resulting Performance: 10.71%
+Coach's Notes: Safety test complete.
+
+2026-02-20 10:20:13,944 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 7
+Resulting Performance: 202.97%
+Coach's Notes: RSI is 22.91
+
+2026-02-20 10:20:13,946 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 14
+Resulting Performance: 202.97%
+Coach's Notes: RSI is 28.53
+
+2026-02-20 10:20:13,948 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 21
+Resulting Performance: 202.97%
+Coach's Notes: RSI is 27.91
+
+2026-02-20 10:20:13,950 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 28
+Resulting Performance: 202.97%
+Coach's Notes: RSI is 42.58
+
+2026-02-20 10:20:16,061 - SentimentBot - TRAINING SESSION: SentimentBot
+Parameters Tested: News Analysis
+Resulting Performance: 0.00%
+Coach's Notes: Avg Sentiment: 0.00
+
+2026-02-20 10:20:16,705 - SentimentBot - TRAINING SESSION: SentimentBot
+Parameters Tested: News Analysis
+Resulting Performance: 0.00%
+Coach's Notes: Avg Sentiment: 0.00
+

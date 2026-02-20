@@ -1,12 +1,10 @@
 {
     "summary": {
-        "total_trades": 1,
+        "total_trades": 4,
         "status": "Training Complete"
     },
     "insights": [
-        "SentimentBot correctly identified market mood.",
-        "GrowthSeekerBot's RSI indicates the market is currently overbought.",
-        "RiskManagerBot automatically adjusted its stop-loss to be safer."
+        "Automated learning activated."
     ],
     "recommendation": "Increase stop-loss for high-volatility assets."
 }
