@@ -1,0 +1,44 @@
+[
+  {
+    "sessionId": "5c577065-ea6d-498f-ac3c-640cfb97e66a",
+    "messageId": 0,
+    "type": "user",
+    "message": "I want to start a project in this folder that gets a free AI component that I will train on trading. i will also setup the infrastructure to necessary for such setup enabeling getting information and getting trades and traning the model and evaluating the model. The purpose of this project is to learn and test the if this is a something i get get working and the scope is to first simulate with a test purse of a limited amount of 20K Nok to test and train and and a medium account of simulated 200 K Nok and a large of 2mill NOK \"all non real money\". Then When i get a potential in the models over time i will test with real money first 20 K Nok that I can loose.",
+    "timestamp": "2026-02-20T07:19:57.754Z"
+  },
+  {
+    "sessionId": "5c577065-ea6d-498f-ac3c-640cfb97e66a",
+    "messageId": 1,
+    "type": "user",
+    "message": "I want to run the simulation on different products such as Forex, Crypto, Stocks, bonds and more to find what will have most potential and diffrentiate on the most promising",
+    "timestamp": "2026-02-20T07:21:48.867Z"
+  },
+  {
+    "sessionId": "5c577065-ea6d-498f-ac3c-640cfb97e66a",
+    "messageId": 2,
+    "type": "user",
+    "message": "I also need to be able to play with different algoritms and get suggestions and give tests on directions etc. and collect news and relevant data",
+    "timestamp": "2026-02-20T07:23:23.113Z"
+  },
+  {
+    "sessionId": "7641ae27-00db-4b71-9b22-3a0317631082",
+    "messageId": 0,
+    "type": "user",
+    "message": "/init",
+    "timestamp": "2026-02-20T07:28:20.554Z"
+  },
+  {
+    "sessionId": "7641ae27-00db-4b71-9b22-3a0317631082",
+    "messageId": 1,
+    "type": "user",
+    "message": "/init",
+    "timestamp": "2026-02-20T07:28:27.826Z"
+  },
+  {
+    "sessionId": "7641ae27-00db-4b71-9b22-3a0317631082",
+    "messageId": 2,
+    "type": "user",
+    "message": "sudo /init",
+    "timestamp": "2026-02-20T07:28:37.576Z"
+  }
+]

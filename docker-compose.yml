@@ -1,0 +1,10 @@
+services:
+  tradex-app:
+    build: .
+    container_name: tradex_container
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true

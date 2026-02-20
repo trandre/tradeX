@@ -1,0 +1,7 @@
+2026-02-20 08:12:26,560 - INFO - ANALYSIS OF Norwegian Pension Fund Global:
+Style: Long-term Value, ESG Focused, Diversified
+Insight: This actor prioritizes stability over high-risk short-term gains. Our bot should mimic this by increasing the 'Long-term Moving Average' window to filter out market noise.
+2026-02-20 08:19:31,487 - INFO - Mimicking Renaissance Technologies (Medallion). Setting parameters to {'short_window': 5, 'long_window': 20, 'risk_level': 'Aggressive'}.
+2026-02-20 08:24:07,191 - INFO - Mimicking Norwegian Pension Fund Global. Setting parameters to {'short_window': 50, 'long_window': 200, 'risk_level': 'Conservative'}.
+2026-02-20 08:24:40,981 - INFO - Mimicking Norwegian Pension Fund Global. Setting parameters to {'short_window': 50, 'long_window': 200, 'risk_level': 'Conservative'}.
+2026-02-20 08:25:06,386 - INFO - Mimicking Norwegian Pension Fund Global. Setting parameters to {'short_window': 50, 'long_window': 200, 'risk_level': 'Conservative'}.

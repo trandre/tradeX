@@ -1,0 +1,17 @@
+{
+    "portfolio_avg_esg": 78.5,
+    "compliance_status": "HIGHLY ETHICAL",
+    "details": [
+        {
+            "asset": "AAPL",
+            "esg_score": 75,
+            "status": "PASS"
+        },
+        {
+            "asset": "EQNR.OL",
+            "esg_score": 82,
+            "status": "PASS"
+        }
+    ],
+    "timestamp": "2026-02-20T08:28:33.237458"
+}

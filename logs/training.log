@@ -1,0 +1,51 @@
+2026-02-20 08:17:25,578 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 2.0%
+Resulting Performance: -2.23%
+Coach's Notes: Stop-loss triggered early due to volatility.
+
+2026-02-20 08:17:25,579 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 10.0%
+Resulting Performance: -10.17%
+Coach's Notes: Stop-loss triggered early due to volatility.
+
+2026-02-20 08:17:25,582 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: MA Window: 5
+Resulting Performance: 6.46%
+Coach's Notes: MA Window lagged behind price action.
+
+2026-02-20 08:17:25,584 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: MA Window: 50
+Resulting Performance: 6.46%
+Coach's Notes: MA Window lagged behind price action.
+
+2026-02-20 08:19:33,977 - AnalyzerBot - Generated Learning Report at /opt/tradeX/logs/learning_report.json
+2026-02-20 08:21:38,858 - SentimentBot - TRAINING SESSION: SentimentBot
+Parameters Tested: News Analysis
+Resulting Performance: 1.03%
+Coach's Notes: Average Sentiment Score: 0.10. Market Outlook: Bullish (Up).
+
+2026-02-20 08:21:38,864 - GrowthSeekerBot - TRAINING SESSION: GrowthSeekerBot
+Parameters Tested: RSI Window: 14
+Resulting Performance: 6.46%
+Coach's Notes: Current RSI is 52.11. Market state: Neutral.
+
+2026-02-20 08:21:38,864 - RiskManagerBot - TRAINING SESSION: RiskManagerBot
+Parameters Tested: Stop-Loss: 7.000000000000001%
+Resulting Performance: -7.46%
+Coach's Notes: Stop-loss triggered. Safety mechanism worked.
+
+2026-02-20 08:24:07,191 - SentimentBot - TRAINING SESSION: SentimentBot
+Parameters Tested: News Analysis
+Resulting Performance: 0.17%
+Coach's Notes: Average Sentiment Score: 0.02. Market Outlook: Neutral.
+
+2026-02-20 08:24:40,981 - SentimentBot - TRAINING SESSION: SentimentBot
+Parameters Tested: News Analysis
+Resulting Performance: 0.17%
+Coach's Notes: Average Sentiment Score: 0.02. Market Outlook: Neutral.
+
+2026-02-20 08:25:06,385 - SentimentBot - TRAINING SESSION: SentimentBot
+Parameters Tested: News Analysis
+Resulting Performance: 0.00%
+Coach's Notes: Average Sentiment Score: 0.00. Market Outlook: Neutral.
+
