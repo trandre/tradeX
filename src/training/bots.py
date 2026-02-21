@@ -227,7 +227,7 @@ class ModelComparisonBot(TrainerBot):
             regime, _ = self.engine_medallion.fit_regime_detection(market_data.values)
             medallion_perf = 28.0 if regime == "Stable_Growth" else 12.0 # Medallion excels in patterns
             medallion_note = f"HMM Regime: {regime}. Exploited statistical anomalies."
-        except:
+        except Exception:
             medallion_perf = 15.0
             medallion_note = "HMM convergence failed. Fallback to mean reversion."
 

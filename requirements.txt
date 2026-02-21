@@ -1,16 +1,12 @@
 pandas
 numpy
 yfinance
-ccxt
 scikit-learn
 hmmlearn
-matplotlib
 python-dotenv
 beautifulsoup4
 requests
 textblob
 lxml
-pydantic
-httpx
 xlsxwriter
 pytest

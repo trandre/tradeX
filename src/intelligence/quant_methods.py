@@ -45,7 +45,7 @@ class MedallionEngine:
             
             current_state = hidden_states[-1]
             return self.regime_map[current_state], hidden_states
-        except:
+        except Exception:
             return "Neutral_Choppy", np.zeros(len(returns))
 
     def predict_next_move_kernel(self, prices, window=5):
