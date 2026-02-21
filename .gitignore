@@ -1,7 +1,12 @@
 venv/
 __pycache__/
+*.pyc
+*.pyo
 .env
 *.xlsx
+reports/
 logs/*.out
 logs/continuous_process.log
 logs/nohup_training.out
+data/
+.pytest_cache/

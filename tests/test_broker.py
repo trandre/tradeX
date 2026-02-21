@@ -7,13 +7,14 @@ class TestSimulatedBroker(unittest.TestCase):
 
     def test_initialization(self):
         self.assertEqual(self.broker.purse, 10000)
-        self.assertEqual(self.broker.purse_tier, "SMALL (20K)")
+        self.assertEqual(self.broker.initial_cash, 10000)
 
     def test_buy_execution(self):
         success, message = self.broker.execute_trade("AAPL", 1, 150, side='buy')
         self.assertTrue(success)
-        # Cost: 150 + 0.1% fee (0.15) = 150.15
-        self.assertEqual(self.broker.purse, 10000 - 150.15)
+        # Cost: 150 + 0.1% commission (0.15) + 0.05% slippage (0.075) = 150.225
+        expected_purse = 10000 - 150 - (150 * 0.001) - (150 * 0.0005)
+        self.assertAlmostEqual(self.broker.purse, expected_purse, places=5)
         self.assertEqual(self.broker.positions["AAPL"]['qty'], 1)
 
     def test_insufficient_funds(self):

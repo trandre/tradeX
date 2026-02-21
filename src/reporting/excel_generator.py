@@ -6,12 +6,13 @@ import datetime
 import yfinance as yf
 import numpy as np
 from src.intelligence.quant_methods import MedallionEngine
+from src.config import LOGS_DIR, REPORT_DIR
 
 class DailyExcelReport:
-    def __init__(self, broker, analyzer_report_path="logs/learning_report.json"):
+    def __init__(self, broker):
         self.broker = broker
-        self.analyzer_report_path = analyzer_report_path
-        self.filename = f"TradeX_Elite_Analysis_{datetime.date.today().isoformat()}.xlsx"
+        self.analyzer_report_path = str(LOGS_DIR / "learning_report.json")
+        self.filename = str(REPORT_DIR / f"TradeX_Elite_Analysis_{datetime.date.today().isoformat()}.xlsx")
         self.medallion = MedallionEngine()
 
     def generate(self, current_prices):

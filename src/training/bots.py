@@ -4,6 +4,7 @@ from src.security.guardrails import Guardrail
 from src.intelligence.social import CorruptionIndex
 from src.intelligence.engine import ClaudeOllamaEngine
 from src.intelligence.quant_methods import MedallionEngine # Import Simons' methods
+from src.config import LOGS_DIR
 from textblob import TextBlob
 import pandas as pd
 import logging
@@ -16,8 +17,8 @@ class TrainerBot(ABC):
     def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.log_path = "/opt/tradeX/logs/training.log"
-        self.report_path = "/opt/tradeX/logs/learning_report.json"
+        self.log_path = str(LOGS_DIR / "training.log")
+        self.report_path = str(LOGS_DIR / "learning_report.json")
         self._setup_logger()
 
     def _setup_logger(self):
@@ -168,7 +169,7 @@ class QuantTrainer(TrainerBot):
 class EthicsBot(TrainerBot):
     def __init__(self):
         super().__init__("EthicsBot", "Generates ethical compliance and ESG reports.")
-        self.report_path = "/opt/tradeX/logs/ethical_compliance_report.json"
+        self.report_path = str(LOGS_DIR / "ethical_compliance_report.json")
         self.index = CorruptionIndex()
 
     def run_training_session(self, positions):
@@ -207,7 +208,7 @@ class ModelComparisonBot(TrainerBot):
     """
     def __init__(self):
         super().__init__("ModelComparator", "Compares and critiques different AI architectures.")
-        self.performance_stats = "/opt/tradeX/logs/model_performance.json"
+        self.performance_stats = str(LOGS_DIR / "model_performance.json")
         self.engine_claude = ClaudeOllamaEngine() # Real engine integrated!
         self.engine_medallion = MedallionEngine() # Simons math engine!
 
@@ -261,7 +262,7 @@ class ModelComparisonBot(TrainerBot):
 class AnalyzerBot(TrainerBot):
     def __init__(self):
         super().__init__("AnalyzerBot", "Critical inspector identifying strategy failures.")
-        self.report_path = "/opt/tradeX/logs/learning_report.json"
+        self.report_path = str(LOGS_DIR / "learning_report.json")
 
     def run_training_session(self, broker_history):
         lessons = [

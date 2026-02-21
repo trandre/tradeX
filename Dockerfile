@@ -1,33 +1,43 @@
-# Use an official Python runtime as a parent image
-FROM python:3.12-slim
+# ── Build stage: install dependencies ────────────────────────────────────────
+FROM python:3.12-slim AS builder
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONPATH=/app
+WORKDIR /build
 
-# Set work directory
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends 
-    build-essential 
-    libxml2-dev 
-    libxslt-dev 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libxml2-dev \
+    libxslt-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
-# Download NLTK data for TextBlob (SentimentBot)
-RUN python -m textblob.download_corpora
+# Download NLTK corpora used by TextBlob
+RUN PYTHONPATH=/install/lib/python3.12/site-packages \
+    python -c "import textblob; import subprocess; subprocess.run(['python','-m','textblob.download_corpora'])"
 
-# Copy project files
-COPY . .
+# ── Runtime stage ─────────────────────────────────────────────────────────────
+FROM python:3.12-slim AS runtime
 
-# Create directory for logs
-RUN mkdir -p /app/logs
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app
 
-# Command to run the project status report on startup
-CMD ["python", "status_report.py"]
+# Non-root user for security
+RUN addgroup --system tradex && adduser --system --ingroup tradex tradex
+
+WORKDIR /app
+
+# Copy installed packages from builder
+COPY --from=builder /install /usr/local
+
+# Copy source
+COPY --chown=tradex:tradex . .
+
+# Ensure runtime directories exist and are writable by tradex user
+RUN mkdir -p /app/logs /app/data /app/reports \
+    && chown -R tradex:tradex /app/logs /app/data /app/reports
+
+USER tradex
+
+CMD ["python", "hardcore_training.py"]

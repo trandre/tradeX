@@ -1,5 +1,6 @@
 import logging
 import os
+from src.config import LOGS_DIR
 
 class CorruptionIndex:
     """
@@ -31,28 +32,39 @@ class EthicalFilter:
     """
     Ensures the trading system stays within ethical boundaries.
     Uses CorruptionIndex to block assets with low ethical scores.
+    Explicit block lists (blocked_companies, blocked_countries) take precedence
+    over the score-based threshold.
     """
-    
-    def __init__(self, min_score_threshold=40, blocked_segments=None):
+
+    def __init__(self, min_score_threshold=40, blocked_segments=None,
+                 blocked_companies=None, blocked_countries=None):
         self.index = CorruptionIndex()
         self.min_score_threshold = min_score_threshold
         self.blocked_segments = blocked_segments or []
+        self.blocked_companies = blocked_companies or []
+        self.blocked_countries = blocked_countries or []
 
     def is_allowed(self, asset_metadata):
         ticker = asset_metadata.get('ticker')
         country = asset_metadata.get('country')
         segment = asset_metadata.get('segment')
 
-        # 1. Segment Check
+        # 1. Explicit block lists (highest priority)
+        if ticker in self.blocked_companies:
+            return False, f"Company {ticker} is explicitly blocked."
+        if country in self.blocked_countries:
+            return False, f"Country {country} is explicitly blocked."
+
+        # 2. Segment Check
         if segment in self.blocked_segments:
             return False, f"Segment {segment} is ethically prohibited."
 
-        # 2. Country Score Check
+        # 3. Country Score Check
         country_score = self.index.get_score(country, "country")
         if country_score < self.min_score_threshold:
             return False, f"Country {country} failed ethical score ({country_score})."
 
-        # 3. Company Score Check
+        # 4. Company Score Check
         company_score = self.index.get_score(ticker, "company")
         if company_score < self.min_score_threshold:
             return False, f"Company {ticker} failed ethical score ({company_score})."
@@ -84,7 +96,7 @@ class ShadowTrader:
                 "params": {"short_window": 5, "long_window": 20, "risk_level": "Aggressive"}
             }
         }
-        self.log_path = '/opt/tradeX/logs/trader_analysis.log'
+        self.log_path = str(LOGS_DIR / "trader_analysis.log")
         self._setup_logger()
 
     def _setup_logger(self):

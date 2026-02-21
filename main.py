@@ -6,16 +6,17 @@ from src.training.bots import AnalyzerBot, SentimentTrainer, ModelComparisonBot
 from src.reporting.excel_generator import DailyExcelReport
 from send_daily_report import send_email_report
 from src.intelligence.quant_methods import MedallionEngine
+from src.config import INITIAL_PURSE_NOK, EMAIL_RECIPIENT
 import pandas as pd
 import datetime
 import random
 
 def main():
     print("--- TradeX Advanced Multi-Model Hub ---")
-    
+
     # 1. SETUP
     ingestor = MultiAssetIngestor()
-    broker = SimulatedBroker(initial_purse_nok=20000)
+    broker = SimulatedBroker(initial_purse_nok=INITIAL_PURSE_NOK)
     claude = ClaudeOllamaEngine()
     medallion = MedallionEngine()
     sentiment_bot = SentimentTrainer()
@@ -78,7 +79,7 @@ def main():
     filename = report_gen.generate(current_prices)
     
     # Send rapport
-    send_email_report("tfemteh@gmail.com", filename)
+    send_email_report(EMAIL_RECIPIENT, filename)
     print(f"Fullført. Rapport sendt: {filename}")
 
 if __name__ == "__main__":

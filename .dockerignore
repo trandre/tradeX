@@ -3,6 +3,10 @@ __pycache__/
 *.pyc
 logs/*.log
 logs/*.json
+!logs/model_performance.json
+!logs/learning_report.json
+!logs/ethical_compliance_report.json
+!logs/training.log
 .git/
 .env
 tests/.pytest_cache/

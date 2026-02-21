@@ -1,10 +1,97 @@
+version: "3.9"
+
+# ── Shared environment loaded from .env ───────────────────────────────────────
+x-tradex-env: &tradex-env
+  env_file: .env
+  environment:
+    PYTHONUNBUFFERED: "1"
+    OLLAMA_HOST: "http://ollama:11434"
+    TRADEX_LOGS_DIR: /app/logs
+    TRADEX_DATA_DIR: /app/data
+    TRADEX_REPORT_DIR: /app/reports
+
+# ── Shared volume mounts ──────────────────────────────────────────────────────
+x-tradex-volumes: &tradex-volumes
+  - logs:/app/logs
+  - data:/app/data
+  - reports:/app/reports
+
 services:
-  tradex-app:
-    build: .
-    container_name: tradex_container
+
+  # ── Ollama LLM server ───────────────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: tradex_ollama
+    restart: unless-stopped
     volumes:
-      - ./logs:/app/logs
+      - ollama_models:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ── Pull required models on first start ────────────────────────────────────
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: tradex_ollama_pull
+    restart: "no"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: >
+      sh -c "
+        ollama pull ${OLLAMA_MODEL_ANALYST:-qwen2.5:7b} &&
+        ollama pull ${OLLAMA_MODEL_MANAGER:-mistral:7b}
+      "
     environment:
-      - PYTHONUNBUFFERED=1
-    stdin_open: true
-    tty: true
+      OLLAMA_HOST: "http://ollama:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+
+  # ── Continuous trainer (runs on a loop) ────────────────────────────────────
+  tradex-trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tradex:latest
+    container_name: tradex_trainer
+    restart: unless-stopped
+    command: python continuous_training.py
+    <<: *tradex-env
+    volumes: *tradex-volumes
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+  # ── Main trading engine (one-shot, runs then exits) ────────────────────────
+  tradex-main:
+    image: tradex:latest
+    container_name: tradex_main
+    restart: "no"
+    command: python main.py
+    <<: *tradex-env
+    volumes: *tradex-volumes
+    depends_on:
+      - tradex-trainer
+
+  # ── Report generator ───────────────────────────────────────────────────────
+  tradex-report:
+    build:
+      context: .
+      dockerfile: Dockerfile.report01
+    image: report01
+    container_name: tradex_report
+    restart: "no"
+    network_mode: host
+    volumes:
+      - logs:/app/logs
+
+volumes:
+  ollama_models:
+  logs:
+  data:
+  reports:

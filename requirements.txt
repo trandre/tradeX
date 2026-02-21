@@ -3,13 +3,14 @@ numpy
 yfinance
 ccxt
 scikit-learn
-torch
+hmmlearn
 matplotlib
 python-dotenv
 beautifulsoup4
 requests
 textblob
 lxml
-ollama
 pydantic
 httpx
+xlsxwriter
+pytest
