@@ -1,0 +1,16 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# Only the ollama client package is needed for the connectivity check
+RUN pip install --no-cache-dir ollama==0.6.1
+
+# Copy report scripts
+# NOTE: logs come from volume mount at runtime — do NOT bake them in at build time
+COPY report_full.py .
+COPY send_daily_report.py .
+
+CMD ["python", "report_full.py"]

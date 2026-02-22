@@ -24,8 +24,10 @@ services:
     container_name: tradex_ollama
     restart: unless-stopped
     volumes:
-      - ollama_models:/root/.ollama
+      # Reuse models already downloaded on the host — avoids re-downloading
+      - ${HOME}/.ollama:/root/.ollama
     ports:
+      # Expose on host so report01 (--network=host) can reach it
       - "11434:11434"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
@@ -87,6 +89,9 @@ services:
     container_name: tradex_report
     restart: "no"
     network_mode: host
+    env_file: .env
+    environment:
+      PYTHONUNBUFFERED: "1"
     volumes:
       - logs:/app/logs
 
