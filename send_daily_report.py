@@ -6,13 +6,17 @@ from email import encoders
 import os
 import datetime
 
-def send_email_report(recipient_email, attachment_path):
-    # Retrieve credentials from environment variables (Safety First!)
-    sender_email = os.getenv("TRADEX_EMAIL_USER") 
+def send_email_report(attachment_path, recipient_email=None):
+    sender_email = os.getenv("TRADEX_EMAIL_USER")
     sender_password = os.getenv("TRADEX_EMAIL_PASS")
-    
+    recipient_email = recipient_email or os.getenv("TRADEX_EMAIL_RECIPIENT")
+
     if not sender_email or not sender_password:
-        print("Error: EMAIL_USER or EMAIL_PASS environment variables not set.")
+        print("Error: TRADEX_EMAIL_USER or TRADEX_EMAIL_PASS not set.")
+        print(f"REPORT SAVED LOCALLY: {attachment_path}")
+        return False
+    if not recipient_email:
+        print("Error: TRADEX_EMAIL_RECIPIENT not set and no recipient provided.")
         print(f"REPORT SAVED LOCALLY: {attachment_path}")
         return False
 
